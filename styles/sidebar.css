@@ -1,0 +1,17 @@
+/* Sidebar Styles */
+.sidebar-button {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    color: currentColor;
+}
+
+.sidebar-button:hover {
+    opacity: 0.7;
+}
+
+.sidebar-button-active {
+    color: #4157A1;
+}
+
+.dark .sidebar-button-active {
+    color: #AE666A;
+}

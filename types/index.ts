@@ -12,11 +12,7 @@ export type ModelType =
 export interface Hyperparameters {
     temperature?: number;
     top_p?: number;
-    top_k?: number;
     max_tokens?: number;
-    repetition_penalty?: number;
-    frequency_penalty?: number;
-    presence_penalty?: number;
     stop?: string[];
 }
 

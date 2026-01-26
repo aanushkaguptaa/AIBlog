@@ -15,21 +15,19 @@ export const HyperparametersNode: React.FC<HyperparametersNodeProps> = ({ data }
     const [topK, setTopK] = useState(50);
     const [topP, setTopP] = useState(0.9);
     const [temperature, setTemperature] = useState(1.0);
-    const [maxTokens, setMaxTokens] = useState(1000);
+    const [maxTokens, setMaxTokens] = useState(600);
     const [stop, setStop] = useState('');
     const [repeatPenalty, setRepeatPenalty] = useState(1.0);
 
     useEffect(() => {
         const params: Hyperparameters = {
-            top_k: topK,
             top_p: topP,
             temperature,
             max_tokens: maxTokens,
-            repetition_penalty: repeatPenalty,
             ...(stop ? { stop: stop.split(',').map(s => s.trim()) } : {}),
         };
         data.onValueChange?.(params);
-    }, [topK, topP, temperature, maxTokens, stop, repeatPenalty, data.onValueChange]);
+    }, [topP, temperature, maxTokens, stop, data.onValueChange]);
 
     return (
         <>
@@ -41,16 +39,6 @@ export const HyperparametersNode: React.FC<HyperparametersNodeProps> = ({ data }
                 <div className="font-semibold text-sm mb-3">{data.label}</div>
 
                 <div className="space-y-3 text-xs nodrag">
-                    {/* top_k */}
-                    <div>
-                        <label className="block mb-1 font-medium">top_k</label>
-                        <input
-                            type="number"
-                            value={topK}
-                            onChange={(e) => setTopK(Number(e.target.value))}
-                            className="w-full px-2 py-1 rounded border border-current/30 bg-white/10 dark:bg-black/10 focus:outline-none focus:ring-1 focus:ring-current/50"
-                        />
-                    </div>
 
                     {/* top_p */}
                     <div>
@@ -85,8 +73,13 @@ export const HyperparametersNode: React.FC<HyperparametersNodeProps> = ({ data }
                         <label className="block mb-1 font-medium">max_tokens</label>
                         <input
                             type="number"
+                            min="1"
+                            max="600"
                             value={maxTokens}
-                            onChange={(e) => setMaxTokens(Number(e.target.value))}
+                            onChange={(e) => {
+                                const val = Number(e.target.value);
+                                if (val <= 600) setMaxTokens(val);
+                            }}
                             className="w-full px-2 py-1 rounded border border-current/30 bg-white/10 dark:bg-black/10 focus:outline-none focus:ring-1 focus:ring-current/50"
                         />
                     </div>
@@ -100,20 +93,6 @@ export const HyperparametersNode: React.FC<HyperparametersNodeProps> = ({ data }
                             onChange={(e) => setStop(e.target.value)}
                             placeholder="e.g., \n, ."
                             className="w-full px-2 py-1 rounded border border-current/30 bg-white/10 dark:bg-black/10 focus:outline-none focus:ring-1 focus:ring-current/50"
-                        />
-                    </div>
-
-                    {/* repeat_penalty */}
-                    <div>
-                        <label className="block mb-1 font-medium">repeat_penalty: {repeatPenalty.toFixed(2)}</label>
-                        <input
-                            type="range"
-                            min="0"
-                            max="2"
-                            step="0.01"
-                            value={repeatPenalty}
-                            onChange={(e) => setRepeatPenalty(Number(e.target.value))}
-                            className="w-full accent-current"
                         />
                     </div>
                 </div>

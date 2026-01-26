@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import { Sidebar } from '@/components/Sidebar';
 import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
 import { FlowDiagram } from '@/components/FlowDiagram';
 import { diagram1, diagram2, diagram3, diagram4 } from '@/lib/diagramConfigs';
 import { Section } from '@/types';
@@ -16,6 +15,8 @@ const sections: Section[] = [
   { id: 'prompts', title: 'System and User Prompts' },
   { id: 'memory', title: 'Memory' },
   { id: 'accuracy', title: 'Accuracy, Bias, and Trust' },
+  { id: 'upcoming', title: 'So, what\'s next?' },
+  { id: 'reading', title: 'Further Reading' },
 ];
 
 export default function Home() {
@@ -137,9 +138,6 @@ export default function Home() {
                 This is where transformers came in. These transformers use a mechanism called "attention" that lets them see the entire sequence of words at once and hence relate between words and "understand" context more effectively. Most modern LLMs are based on this transformer architecture.
               </p>
               <p>
-                However, there's a key limit. Each LLM has its own "context window" or the maximum amount of words (tokens) in a sequence that it can "see" and process at once. This context window varies depending upon the model.
-              </p>
-              <p>
                 So to sum it up, Large Language Models are largely transformer-based systems which are used to generate text by predicting the next best word match. We provide an input, and the models provide an output based on the patterns they have learnt while training them on vast amounts of data.
               </p>
             </div>
@@ -235,12 +233,6 @@ export default function Home() {
               <p>
                 At their core, LLMs are probabilistic- trained to predict the next most likely word. Verification is not involved here. Many models you use today are further trained to be helpful and fluent, which is sometimes at the cost of caution- especially in situations where uncertainty or even refusal might be more appropriate.
               </p>
-              <p>Therefore, there are limitations that come with building with LLMs that we must keep in mind:</p>
-
-              <p>
-                <strong>1.</strong> Models might produce false statements over admitting uncertainty. Why don't you test it out? Try making up a word and asking a chatbot, "What does {'{'}insert word here{'}'} slang mean?" The answer would not only sound confident, but it would also be followed by a "plausible" explanation.
-              </p>
-
               <div className="my-8 flex justify-center">
                 <Image
                   src={isDark ? "/P1D1_Dark.drawio.png" : "/P1D1.drawio.png"}
@@ -253,6 +245,11 @@ export default function Home() {
                   style={{ objectFit: 'contain' }}
                 />
               </div>
+              <p>Therefore, there are limitations that come with building with LLMs that we must keep in mind:</p>
+
+              <p>
+                <strong>1.</strong> Models might produce false statements over admitting uncertainty. Why don't you test it out? Try making up a word and asking a chatbot, "What does {'{'}insert word here{'}'} slang mean?" The answer would not only sound confident, but it would also be followed by a "plausible" explanation.
+              </p>
 
               <p>
                 <strong>2.</strong> LLMs are trained on large amounts of publicly available data. <strong>This means LLMs are neither "all knowing" nor have access to sensitive or private information</strong>. If you ask something like "What's my colleague's salary?" The answer you'll receive will be either fabricated or a guess.
@@ -297,10 +294,57 @@ export default function Home() {
               </div>
             </div>
           </section>
+          {/* Next Steps */}
+          <section id="upcoming" className="mb-20">
+            <h2 className="text-3xl font-bold mb-6">So, what's next?</h2>
+            <div className="space-y-4   leading-relaxed mb-8">
+              <p>
+                Understanding the limitations of LLMs is the first step to working with them as a <strong>tool</strong> and to building around them. This also opens up a new set of “blocks” and combinations that people use for most modern AI applications: Retrieval Augmented Generation (RAG), Search-based Augmentation, Agents, and MCPs.
+              </p>
+              <p>
+                I’m looking forward to delving into them next. Maybe along the way, you’ll find combinations that work best for you or even get to design one of the blocks.
+              </p>
+            </div>
+          </section>
+
+          {/* Further Reading */}
+          <section id="reading" className="mb-20">
+            <h3 className="text-2xl font-bold mb-6">Further Reading</h3>
+            <ul className="list-none space-y-2 ml-4">
+              <li>
+                <a href="https://jalammar.github.io/illustrated-transformer/" target="_blank" rel="noopener noreferrer" className={`${isDark ? 'text-[#AE666A]' : 'text-[#4157A1]'} hover:underline`}>
+                  The Illustrated Transformer
+                </a>
+              </li>
+              <li>
+                <a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener noreferrer" className={`${isDark ? 'text-[#AE666A]' : 'text-[#4157A1]'} hover:underline`}>
+                  Attention Is All You Need (Research Paper)
+                </a>
+              </li>
+              <li>
+                <a href="https://www.datacamp.com/tutorial/llm-benchmarks" target="_blank" rel="noopener noreferrer" className={`${isDark ? 'text-[#AE666A]' : 'text-[#4157A1]'} hover:underline`}>
+                  Choosing Between LLMs: Benchmarks & Comparisons
+                </a>
+              </li>
+              <li>
+                <a href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-4-best-practices" target="_blank" rel="noopener noreferrer" className={`${isDark ? 'text-[#AE666A]' : 'text-[#4157A1]'} hover:underline`}>
+                  Prompt Engineering Best Practices (Anthropic)
+                </a>
+              </li>
+              <li>
+                <a href="https://www.youtube.com/watch?v=T9aRN5JkmL8" target="_blank" rel="noopener noreferrer" className={`${isDark ? 'text-[#AE666A]' : 'text-[#4157A1]'} hover:underline`}>
+                  Prompt Engineering Explained (Video)
+                </a>
+              </li>
+              <li>
+                <a href="https://www.kaggle.com/whitepaper-foundational-llm-and-text-generation" target="_blank" rel="noopener noreferrer" className={`${isDark ? 'text-[#AE666A]' : 'text-[#4157A1]'} hover:underline`}>
+                  Foundations of LLMs & Text Generation (Google's Whitepaper)
+                </a>
+              </li>
+            </ul>
+          </section>
         </div>
       </main>
-
-      <Footer />
     </div>
   );
 }

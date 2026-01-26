@@ -233,34 +233,68 @@ export default function Home() {
                 When we work with LLMs, one of the major concerns is understanding whether our final output(s) are factual, grounded, and ethically right. Whether the product is large-scale or small-scale, ensuring that the responses are exactly how we intend them to be is essential.
               </p>
               <p>
-                At their core, LLMs are probabilistic- trained to predict the next most likely word. Verification is not involved here. Many systems you use today are further designed to be helpful and fluent, which is sometimes at the cost of caution- especially in situations where uncertainty or even refusal might be more appropriate.
+                At their core, LLMs are probabilistic- trained to predict the next most likely word. Verification is not involved here. Many models you use today are further trained to be helpful and fluent, which is sometimes at the cost of caution- especially in situations where uncertainty or even refusal might be more appropriate.
               </p>
               <p>Therefore, there are limitations that come with building with LLMs that we must keep in mind:</p>
 
-              <ul className="space-y-4">
-                <li>
-                  Models might produce false statements over admitting uncertainty. Why don't you test it out? Try making up a word and asking a chatbot, "What does {'{'}insert word here{'}'} slang mean?" The answer would not only sound confident, but it would also be followed by a "plausible" explanation.
-                </li>
-                <li>
-                  LLMs are trained on large amounts of publicly available data. This means LLMs are neither "all knowing" nor have access to sensitive or private information. If you ask something like "What's my colleague's salary?" The answer you'll receive will be either fabricated or a guess.
-                </li>
-                <li>
-                  LLMs are not always up-to date. Since training is an expensive process and is typically done once or twice a year, their knowledge lags behind real-world events. For example, asking the model to list all places that experienced an earthquake today will likely result in an incomplete or incorrect answer.
-                </li>
-                <li>
-                  <div className="space-y-3">
-                    <p className="m-0">
-                      Humans have the ability to learn something and retain that information for a long time. LLMs, however, cannot. While we can easily switch between topics, remember relevant context, and carry the conversation forward, LLMs struggle as the exchanges grow longer. You might have experienced it yourself: when asking a chatbot about the same task repeatedly, the responses might become worse and worse until the answers are generated completely out of context.
-                    </p>
-                    <p className="m-0">
-                      What happens here internally is that earlier information is compressed, ignored, or dropped because the model can only process a certain amount of information at a time. This amount of information is known as a "context window". When the LLMs start to generate text that is inaccurate and nonsensical, it's called hallucination. Bringing down hallucinations to a minimum is critical to any application.
-                    </p>
-                  </div>
-                </li>
-                <li>
-                  LLMs can reflect biases present in their training data. These biases may surface in unexpected and subtle ways, which pose ethical risks if unexamined. Addressing these biases is part of our responsibilities while building such systems.
-                </li>
-              </ul>
+              <p>
+                <strong>1.</strong> Models might produce false statements over admitting uncertainty. Why don't you test it out? Try making up a word and asking a chatbot, "What does {'{'}insert word here{'}'} slang mean?" The answer would not only sound confident, but it would also be followed by a "plausible" explanation.
+              </p>
+
+              <div className="my-8 flex justify-center">
+                <Image
+                  src={isDark ? "/P1D1_Dark.drawio.png" : "/P1D1.drawio.png"}
+                  alt="Diagram illustrating LLM false confidence"
+                  width={0}
+                  height={0}
+                  sizes="100vw"
+                  quality={100}
+                  className="w-full h-auto px-24"
+                  style={{ objectFit: 'contain' }}
+                />
+              </div>
+
+              <p>
+                <strong>2.</strong> LLMs are trained on large amounts of publicly available data. <strong>This means LLMs are neither "all knowing" nor have access to sensitive or private information</strong>. If you ask something like "What's my colleague's salary?" The answer you'll receive will be either fabricated or a guess.
+              </p>
+
+              <p>
+                <strong>3.</strong> LLMs are not always up-to date. Since training is an expensive process and is typically done once or twice a year, <strong>their knowledge lags behind real-world events</strong>. For example, asking the model to list all places that experienced an earthquake today will likely result in an incomplete or incorrect answer.
+              </p>
+
+              <p>
+                <strong>4.</strong> <strong>LLMs can reflect biases present in their training data</strong>. These biases may surface in unexpected and subtle ways, which pose ethical risks if unexamined. Addressing these biases is part of our responsibilities while building such systems.
+              </p>
+
+              <div className="my-8 flex justify-center">
+                <Image
+                  src={isDark ? "/P1D2_Dark.drawio.png" : "/P1D2.drawio.png"}
+                  alt="Diagram illustrating LLM biases"
+                  width={0}
+                  height={0}
+                  sizes="100vw"
+                  quality={100}
+                  className="w-full h-auto"
+                  style={{ objectFit: 'contain' }}
+                />
+              </div>
+
+              <p>
+                <strong>5.</strong> Humans have the ability to learn something and retain that information for a long time. LLMs, however, cannot. While we can easily switch between topics, remember relevant context, and carry the conversation forward, LLMs struggle as the exchanges grow longer. You might have experienced it yourself: when asking a chatbot about the same task repeatedly, the responses might become worse and worse until the answers are generated completely out of context. What happens here internally is that <strong>earlier information is compressed, ignored, or dropped because the model can only process a certain amount of information at a time</strong>. This amount of information is known as a "context window". When the LLMs start to generate text that is inaccurate and nonsensical, it's called hallucination. Bringing down hallucinations to a minimum is critical to any application.
+              </p>
+
+              <div className="my-8 flex justify-center">
+                <Image
+                  src={isDark ? "/P1D3_Dark.drawio.png" : "/P1D3.drawio.png"}
+                  alt="Diagram illustrating LLM context window limitations"
+                  width={0}
+                  height={0}
+                  sizes="100vw"
+                  quality={100}
+                  className="w-full h-auto px-48"
+                  style={{ objectFit: 'contain' }}
+                />
+              </div>
             </div>
           </section>
         </div>

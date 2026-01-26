@@ -7,11 +7,18 @@ interface TextInputNodeProps {
         className: string;
         style?: React.CSSProperties;
         placeholder?: string;
+        onValueChange?: (value: string) => void;
     };
 }
 
 export const TextInputNode: React.FC<TextInputNodeProps> = ({ data }) => {
     const [value, setValue] = useState('');
+
+    const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        const newValue = e.target.value;
+        setValue(newValue);
+        data.onValueChange?.(newValue);
+    };
 
     return (
         <>
@@ -23,10 +30,11 @@ export const TextInputNode: React.FC<TextInputNodeProps> = ({ data }) => {
                 <div className="font-semibold text-sm mb-2">{data.label}</div>
                 <textarea
                     value={value}
-                    onChange={(e) => setValue(e.target.value)}
+                    onChange={handleChange}
                     placeholder={data.placeholder || 'Enter text...'}
-                    className="w-full px-3 py-2 rounded-lg border border-current/30 bg-white/10 dark:bg-black/10 resize-none focus:outline-none focus:ring-2 focus:ring-current/50 text-sm nodrag"
+                    className="nodrag w-full px-2 py-1 text-xs rounded border border-current/30 bg-white/10 dark:bg-black/10 focus:outline-none focus:ring-1 focus:ring-current/50 resize-none"
                     rows={3}
+                    style={{ color: 'inherit' }}
                 />
             </div>
             <Handle type="source" position={Position.Right} className="w-3 h-3" />

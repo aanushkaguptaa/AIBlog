@@ -43,3 +43,42 @@
     background: rgba(31, 41, 55, 0.8);
     border-color: rgba(255, 255, 255, 0.2);
 }
+
+/* ReactFlow Node Styles - Remove default white background */
+.react-flow__node {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+}
+
+.react-flow__node-default {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+}
+
+.react-flow__node-custom,
+.react-flow__node-textInput,
+.react-flow__node-hyperparameters,
+.react-flow__node-output {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+}
+
+/* Remove selection border/outline when clicking nodes */
+.react-flow__node.selected,
+.react-flow__node:focus,
+.react-flow__node:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.react-flow__node.selected .react-flow__node-default,
+.react-flow__node.selected .react-flow__node-custom,
+.react-flow__node.selected .react-flow__node-textInput,
+.react-flow__node.selected .react-flow__node-hyperparameters,
+.react-flow__node.selected .react-flow__node-output {
+    outline: none !important;
+    box-shadow: none !important;
+}

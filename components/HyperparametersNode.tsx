@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Handle, Position } from 'reactflow';
+import { Hyperparameters } from '@/types';
 
 interface HyperparametersNodeProps {
     data: {
         label: string;
         className: string;
         style?: React.CSSProperties;
+        onValueChange?: (params: Hyperparameters) => void;
     };
 }
 
@@ -16,6 +18,18 @@ export const HyperparametersNode: React.FC<HyperparametersNodeProps> = ({ data }
     const [maxTokens, setMaxTokens] = useState(1000);
     const [stop, setStop] = useState('');
     const [repeatPenalty, setRepeatPenalty] = useState(1.0);
+
+    useEffect(() => {
+        const params: Hyperparameters = {
+            top_k: topK,
+            top_p: topP,
+            temperature,
+            max_tokens: maxTokens,
+            repetition_penalty: repeatPenalty,
+            ...(stop ? { stop: stop.split(',').map(s => s.trim()) } : {}),
+        };
+        data.onValueChange?.(params);
+    }, [topK, topP, temperature, maxTokens, stop, repeatPenalty, data.onValueChange]);
 
     return (
         <>

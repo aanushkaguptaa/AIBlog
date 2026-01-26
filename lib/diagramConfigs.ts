@@ -4,7 +4,7 @@ export const diagram1: DiagramConfig = {
   nodes: [
     { id: '1', label: 'Custom Input', position: { x: 0, y: 75 }, color: '#4057a0', nodeType: 'textInput', placeholder: 'Type your input here...' },
     { id: '2', label: 'LLM', position: { x: 250, y: 75 }, color: '#f03c1e' },
-    { id: '3', label: 'Dynamic Output', position: { x: 500, y: 75 }, color: '#20552b' },
+    { id: '3', label: 'Dynamic Output', position: { x: 500, y: 75 }, color: '#20552b', nodeType: 'output' },
   ],
   edges: [
     { id: 'e1-2', source: '1', target: '2' },
@@ -18,7 +18,7 @@ export const diagram2: DiagramConfig = {
     { id: '1', label: 'Custom Input', position: { x: 0, y: 30 }, color: '#4057a0', nodeType: 'textInput', placeholder: 'Type your input here...' },
     { id: '4', label: 'Hyperparameters', position: { x: 0, y: 250 }, color: '#d89921', nodeType: 'hyperparameters' },
     { id: '2', label: 'LLM', position: { x: 320, y: 250 }, color: '#f03c1e' },
-    { id: '3', label: 'Dynamic Output', position: { x: 570, y: 250 }, color: '#20552b' },
+    { id: '3', label: 'Dynamic Output', position: { x: 570, y: 250 }, color: '#20552b', nodeType: 'output' },
   ],
   edges: [
     { id: 'e1-2', source: '1', target: '2' },
@@ -34,7 +34,7 @@ export const diagram3: DiagramConfig = {
     { id: '4', label: 'Hyperparameters', position: { x: 0, y: 250 }, color: '#d89921', nodeType: 'hyperparameters' },
     { id: '5', label: 'System Prompt', position: { x: 0, y: 550 }, color: '#eee0ba', nodeType: 'textInput', placeholder: 'Define system behavior...' },
     { id: '2', label: 'LLM', position: { x: 320, y: 350 }, color: '#f03c1e' },
-    { id: '3', label: 'Dynamic Output', position: { x: 570, y: 350 }, color: '#20552b' },
+    { id: '3', label: 'Dynamic Output', position: { x: 570, y: 350 }, color: '#20552b', nodeType: 'output' },
   ],
   edges: [
     { id: 'e1-2', source: '1', target: '2' },
@@ -52,7 +52,7 @@ export const diagram4: DiagramConfig = {
     { id: '5', label: 'System Prompt', position: { x: 0, y: 550 }, color: '#eee0ba', nodeType: 'textInput', placeholder: 'Define system behavior...' },
     { id: '6', label: 'Conversation History', position: { x: 0, y: 800 }, color: '#c4cae4' },
     { id: '2', label: 'LLM', position: { x: 320, y: 400 }, color: '#f03c1e' },
-    { id: '3', label: 'Dynamic Output', position: { x: 570, y: 400 }, color: '#20552b' },
+    { id: '3', label: 'Dynamic Output', position: { x: 570, y: 400 }, color: '#20552b', nodeType: 'output' },
   ],
   edges: [
     { id: 'e1-2', source: '1', target: '2' },
@@ -62,4 +62,6 @@ export const diagram4: DiagramConfig = {
     { id: 'e6-2', source: '6', target: '2' }
   ],
   height: 'h-[900px]',
+  enableConversationHistory: true,
 };
+

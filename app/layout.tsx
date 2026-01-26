@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { DotGothic16, Space_Mono } from "next/font/google";
 import "./globals.css";
+import "@/styles/components.css";
 
 const dotGothic16 = DotGothic16({
   variable: "--font-dotgothic16",

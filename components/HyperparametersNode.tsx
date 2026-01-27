@@ -12,13 +12,10 @@ interface HyperparametersNodeProps {
 }
 
 export const HyperparametersNode: React.FC<HyperparametersNodeProps> = ({ data }) => {
-    const [topK, setTopK] = useState(50);
     const [topP, setTopP] = useState(0.9);
     const [temperature, setTemperature] = useState(1.0);
     const [maxTokens, setMaxTokens] = useState(600);
     const [stop, setStop] = useState('');
-    const [repeatPenalty, setRepeatPenalty] = useState(1.0);
-
     useEffect(() => {
         const params: Hyperparameters = {
             top_p: topP,
@@ -86,12 +83,20 @@ export const HyperparametersNode: React.FC<HyperparametersNodeProps> = ({ data }
 
                     {/* stop */}
                     <div>
-                        <label className="block mb-1 font-medium">stop</label>
+                        <label className="block mb-1 font-medium">
+                            stop {stop && `(${stop.split(',').filter(s => s.trim()).length}/4)`}
+                        </label>
                         <input
                             type="text"
                             value={stop}
-                            onChange={(e) => setStop(e.target.value)}
-                            placeholder="e.g., \n, ."
+                            onChange={(e) => {
+                                const value = e.target.value;
+                                const sequences = value.split(',').filter(s => s.trim());
+                                if (sequences.length <= 4) {
+                                    setStop(value);
+                                }
+                            }}
+                            placeholder="e.g., \n, . (max 4, comma-separated)"
                             className="w-full px-2 py-1 rounded border border-current/30 bg-white/10 dark:bg-black/10 focus:outline-none focus:ring-1 focus:ring-current/50"
                         />
                     </div>

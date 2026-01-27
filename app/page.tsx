@@ -56,7 +56,7 @@ export default function Home() {
   };
 
   return (
-    <div className={`min-h-screen transition-colors duration-300 ${isDark ? 'dark bg-[#25262C] text-[#E8E9EB]' : 'bg-[#F1F0EC] text-[#000000]'}`}>
+    <div className={`min-h-screen overflow-x-hidden transition-colors duration-300 ${isDark ? 'dark bg-[#25262C] text-[#E8E9EB]' : 'bg-[#F1F0EC] text-[#000000]'}`}>
       <Header isDark={isDark} onToggleDark={() => setIsDark(!isDark)} />
 
       <Sidebar
@@ -64,11 +64,12 @@ export default function Home() {
         activeSection={activeSection}
         showSidebar={showSidebar}
         onSectionClick={scrollToSection}
+        isDark={isDark}
       />
 
-      <main className="py-16">
+      <main className="py-8 sm:py-16">
         {/* Hero Section - Full Width */}
-        <section id="intro" className="mb-20 relative px-[8rem] pt-[10rem] min-h-[60vh] flex items-center">
+        <section id="intro" className="mb-10 sm:mb-20 relative px-4 sm:px-8 md:px-16 lg:px-32 pt-6 sm:pt-24 md:pt-32 lg:pt-40 pb-4 sm:pb-0 min-h-[60vh] flex items-center">
           {/* Mesh Background - Centered */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
             <Image
@@ -84,13 +85,13 @@ export default function Home() {
           {/* Hero Content - Left aligned, vertically centered */}
           <div className="relative z-10">
             {/* Title */}
-            <h1 className="text-7xl font-bold mb-8 text-left">
+            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-8 text-left">
               Designing AI Systems
             </h1>
 
             {/* Profile Section - Below Title */}
-            <div className="flex items-center gap-4">
-              <div className="relative w-16 h-16 rounded-full overflow-hidden border-4 border-current shadow-lg flex-shrink-0">
+            <div className="flex items-center gap-2 sm:gap-4">
+              <div className="relative w-10 h-10 sm:w-16 sm:h-16 rounded-full overflow-hidden border-2 sm:border-4 border-current shadow-lg flex-shrink-0">
                 <Image
                   src="/Profile.png"
                   alt="Anushka Gupta"
@@ -100,13 +101,13 @@ export default function Home() {
                   priority
                 />
               </div>
-              <h2 className="text-2xl font-bold">Anushka Gupta</h2>
+              <h2 className="text-lg sm:text-2xl font-bold">Anushka Gupta</h2>
             </div>
           </div>
         </section>
 
         {/* Blog Content Container - Left Offset */}
-        <div className="ml-[25%] pr-[8rem]">
+        <div className="px-4 sm:px-8 md:px-12 lg:ml-[20%] lg:pr-16 xl:ml-[25%] xl:pr-32">
           {/* Introduction Text */}
           <div className="space-y-4 leading-relaxed mb-20">
             <p>
@@ -122,7 +123,7 @@ export default function Home() {
 
           {/* Large Language Models */}
           <section id="llm" className="mb-20">
-            <h2 className="text-3xl font-bold mb-6">Large Language Models</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-6">Large Language Models</h2>
             <div className="space-y-4   leading-relaxed mb-8">
               <p>
                 Let's begin at the core- Large Language Models or LLMs. These LLMs are created by training transformer models on large chunks of data.
@@ -154,7 +155,7 @@ export default function Home() {
 
           {/* Hyperparameters */}
           <section id="hyperparameters" className="mb-20">
-            <h2 className="text-3xl font-bold mb-6">Hyperparameters</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-6">Hyperparameters</h2>
             <div className="space-y-4   leading-relaxed mb-8">
               <p>
                 Now that you've chosen your model, the next step is tuning its responses. Most LLMs expose a set of controls that let you change how they respond to the same input, without re-training the model itself. These are called hyperparameters.
@@ -180,7 +181,7 @@ export default function Home() {
 
           {/* System and User Prompts */}
           <section id="prompts" className="mb-20">
-            <h2 className="text-3xl font-bold mb-6">System and User Prompts</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-6">System and User Prompts</h2>
             <div className="space-y-4   leading-relaxed mb-8">
               <p>
                 If hyperparameters let you statistically tune how an LLM generates text, <strong>system prompts</strong> can help you change how the model behaves while responding.
@@ -198,7 +199,7 @@ export default function Home() {
 
           {/* Memory */}
           <section id="memory" className="mb-20">
-            <h2 className="text-3xl font-bold mb-6">Memory</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-6">Memory</h2>
             <div className="space-y-4   leading-relaxed mb-8">
               <p>
                 I think we're now clear with almost all basic blocks and controls, including what LLMs are, and the different ways we can tune their responses.
@@ -222,7 +223,7 @@ export default function Home() {
 
           {/* Accuracy, Bias, and Trust */}
           <section id="accuracy" className="mb-20">
-            <h2 className="text-3xl font-bold mb-6">Accuracy, Bias, and Trust</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-6">Accuracy, Bias, and Trust</h2>
             <div className="space-y-4   leading-relaxed">
               <p>
                 Now that we've demystified what people commonly lump together as "AI"- LLMs, hyperparameters, system and user prompts, and conversation memory, we can move onto understanding the why and how we build on top of these pieces.
@@ -241,7 +242,7 @@ export default function Home() {
                   height={0}
                   sizes="100vw"
                   quality={100}
-                  className="w-full h-auto px-24"
+                  className="w-full h-auto px-4 sm:px-12 md:px-24"
                   style={{ objectFit: 'contain' }}
                 />
               </div>
@@ -288,7 +289,7 @@ export default function Home() {
                   height={0}
                   sizes="100vw"
                   quality={100}
-                  className="w-full h-auto px-48"
+                  className="w-full h-auto px-4 sm:px-12 md:px-24 lg:px-48"
                   style={{ objectFit: 'contain' }}
                 />
               </div>
@@ -296,7 +297,7 @@ export default function Home() {
           </section>
           {/* Next Steps */}
           <section id="upcoming" className="mb-20">
-            <h2 className="text-3xl font-bold mb-6">So, what's next?</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-6">So, what's next?</h2>
             <div className="space-y-4   leading-relaxed mb-8">
               <p>
                 Understanding the limitations of LLMs is the first step to working with them as a <strong>tool</strong> and to building around them. This also opens up a new set of “blocks” and combinations that people use for most modern AI applications: Retrieval Augmented Generation (RAG), Search-based Augmentation, Agents, and MCPs.
@@ -309,7 +310,7 @@ export default function Home() {
 
           {/* Further Reading */}
           <section id="reading" className="mb-20">
-            <h3 className="text-2xl font-bold mb-6">Further Reading</h3>
+            <h3 className="text-xl sm:text-2xl font-bold mb-6">Further Reading</h3>
             <ul className="list-none space-y-2 ml-4">
               <li>
                 <a href="https://jalammar.github.io/illustrated-transformer/" target="_blank" rel="noopener noreferrer" className={`${isDark ? 'text-[#AE666A]' : 'text-[#4157A1]'} hover:underline`}>

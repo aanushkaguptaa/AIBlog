@@ -279,7 +279,7 @@ export const FlowDiagram: React.FC<FlowDiagramProps> = ({ config, isDark }) => {
   }, [buildEdges, setEdges]);
 
   return (
-    <div className={`${config.height || 'h-64'} w-full rounded-2xl overflow-hidden border border-gray-300 dark:border-gray-700`}>
+    <div className={`h-96 sm:h-[32rem] md:h-[36rem] w-full rounded-2xl overflow-hidden border border-gray-300 dark:border-gray-700`}>
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -291,7 +291,7 @@ export const FlowDiagram: React.FC<FlowDiagramProps> = ({ config, isDark }) => {
         nodesDraggable={true}
         nodesConnectable={false}
         elementsSelectable={true}
-        panOnDrag={false}
+        panOnDrag={true}
         panOnScroll={true}
         zoomOnScroll={true}
         attributionPosition="bottom-right"

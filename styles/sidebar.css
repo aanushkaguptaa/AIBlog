@@ -2,6 +2,8 @@
 .sidebar-button {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     color: currentColor;
+    padding: 0.5rem 0;
+    font-size: clamp(0.875rem, 2vw, 1rem);
 }
 
 .sidebar-button:hover {
@@ -14,4 +16,12 @@
 
 .dark .sidebar-button-active {
     color: #AE666A;
+}
+
+/* Mobile menu specific styles */
+@media (max-width: 1024px) {
+    .sidebar-button {
+        padding: 0.75rem 0;
+        font-size: 1rem;
+    }
 }

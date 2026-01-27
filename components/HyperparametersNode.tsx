@@ -47,7 +47,7 @@ export const HyperparametersNode: React.FC<HyperparametersNodeProps> = ({ data }
                             max="1"
                             value={topP}
                             onChange={(e) => setTopP(Number(e.target.value))}
-                            className="w-full px-2 py-1 rounded border border-current/30 bg-white/10 dark:bg-black/10 focus:outline-none focus:ring-1 focus:ring-current/50"
+                            className="nodrag w-full px-2 py-1 rounded border border-current/30 bg-white/10 dark:bg-black/10 focus:outline-none focus:ring-1 focus:ring-current/50"
                         />
                     </div>
 
@@ -61,7 +61,7 @@ export const HyperparametersNode: React.FC<HyperparametersNodeProps> = ({ data }
                             step="0.01"
                             value={temperature}
                             onChange={(e) => setTemperature(Number(e.target.value))}
-                            className="w-full accent-current"
+                            className="nodrag w-full accent-current"
                         />
                     </div>
 
@@ -77,7 +77,7 @@ export const HyperparametersNode: React.FC<HyperparametersNodeProps> = ({ data }
                                 const val = Number(e.target.value);
                                 if (val <= 600) setMaxTokens(val);
                             }}
-                            className="w-full px-2 py-1 rounded border border-current/30 bg-white/10 dark:bg-black/10 focus:outline-none focus:ring-1 focus:ring-current/50"
+                            className="nodrag w-full px-2 py-1 rounded border border-current/30 bg-white/10 dark:bg-black/10 focus:outline-none focus:ring-1 focus:ring-current/50"
                         />
                     </div>
 
@@ -97,7 +97,7 @@ export const HyperparametersNode: React.FC<HyperparametersNodeProps> = ({ data }
                                 }
                             }}
                             placeholder="e.g., \n, . (max 4, comma-separated)"
-                            className="w-full px-2 py-1 rounded border border-current/30 bg-white/10 dark:bg-black/10 focus:outline-none focus:ring-1 focus:ring-current/50"
+                            className="nodrag w-full px-2 py-1 rounded border border-current/30 bg-white/10 dark:bg-black/10 focus:outline-none focus:ring-1 focus:ring-current/50"
                         />
                     </div>
                 </div>

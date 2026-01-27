@@ -34,14 +34,18 @@ export async function* streamChat(request: StreamChatRequest): AsyncGenerator<St
             for (const line of lines) {
                 if (line.startsWith('data: ')) {
                     const data = line.slice(6).trim();
-                    if (data) {
-                        try {
-                            const jsonData = data.replace(/'/g, '"');
-                            const parsed: StreamChatResponse = JSON.parse(jsonData);
-                            yield parsed;
-                        } catch (e) {
-                            console.error('Failed to parse SSE data:', e, 'Original data:', data);
-                        }
+
+                    // Skip empty data or SSE comments/metadata
+                    if (!data || data === '[DONE]' || !data.startsWith('{')) {
+                        continue;
+                    }
+
+                    try {
+                        const parsed: StreamChatResponse = JSON.parse(data);
+                        yield parsed;
+                    } catch (e) {
+                        console.error('Failed to parse SSE data:', e);
+                        console.error('Problematic data:', data);
                     }
                 }
             }

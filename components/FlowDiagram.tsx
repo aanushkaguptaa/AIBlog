@@ -64,6 +64,14 @@ export const FlowDiagram: React.FC<FlowDiagramProps> = ({ config, isDark }) => {
     setHyperparameters(params);
   }, []);
 
+  // Reset output when inputs change (after a run has completed)
+  useEffect(() => {
+    if (output && !isLoading) {
+      setOutput('');
+      setError('');
+    }
+  }, [userPrompt, systemPrompt, selectedModel, hyperparameters]);
+
   const handleRun = useCallback(async () => {
     if (!userPrompt.trim()) {
       setError('Please enter a user prompt');
@@ -214,7 +222,7 @@ export const FlowDiagram: React.FC<FlowDiagramProps> = ({ config, isDark }) => {
         data: baseData,
       };
     });
-  }, [config.nodes, isDark, selectedModel, output, isLoading, error, handleRun]);
+  }, [config.nodes, isDark, selectedModel, handleUserPromptChange, handleSystemPromptChange, handleHyperparametersChange]);
 
   const buildEdges = useCallback((): Edge[] => {
     const edgeColor = isDark ? '#ffffff' : '#6b7280';
@@ -239,12 +247,33 @@ export const FlowDiagram: React.FC<FlowDiagramProps> = ({ config, isDark }) => {
   const [nodes, setNodes, onNodesChange] = useNodesState(buildNodes());
   const [edges, setEdges, onEdgesChange] = useEdgesState(buildEdges());
 
-  // Update nodes when dependencies change
+  // Rebuild all nodes when config, theme, or model changes
   useEffect(() => {
     setNodes(buildNodes());
   }, [buildNodes, setNodes]);
 
-  // Update edges when dependencies change
+  // Update only the output node when output/loading/error changes
+  useEffect(() => {
+    setNodes((nds) =>
+      nds.map((node) => {
+        if (node.data.label === 'Dynamic Output') {
+          return {
+            ...node,
+            data: {
+              ...node.data,
+              output,
+              isLoading,
+              error,
+              onRun: handleRun,
+            },
+          };
+        }
+        return node;
+      })
+    );
+  }, [output, isLoading, error, handleRun, setNodes]);
+
+  // Update edges when theme changes
   useEffect(() => {
     setEdges(buildEdges());
   }, [buildEdges, setEdges]);

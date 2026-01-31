@@ -144,6 +144,11 @@ export default function Home() {
             </div>
 
             <div className="mb-6">
+              <div className="mb-4 p-4 rounded-lg border border-current/20 bg-current/5">
+                <p className="text-sm">
+                  <strong>Note:</strong> The interactive diagrams below use free LLM models which may hit rate limits. If you encounter issues, please try a different model or try again later.
+                </p>
+              </div>
               <p className="  mb-4 font-semibold">Let's try:</p>
               <FlowDiagram config={diagram1} isDark={isDark} />
             </div>

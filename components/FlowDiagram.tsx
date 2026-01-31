@@ -143,7 +143,7 @@ export const FlowDiagram: React.FC<FlowDiagramProps> = ({ config, isDark }) => {
       };
 
       // Handle different node types
-      if (node.label === 'LLM') {
+      if (node.label === 'Choose your model') {
         return {
           id: node.id,
           type: 'custom',

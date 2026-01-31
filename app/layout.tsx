@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { DotGothic16, Space_Mono } from "next/font/google";
 import "./globals.css";
 import "@/styles/components.css";
+import { Analytics } from "@vercel/analytics/next"
 
 const dotGothic16 = DotGothic16({
   variable: "--font-dotgothic16",
@@ -31,6 +32,7 @@ export default function RootLayout({
         className={`${dotGothic16.variable} ${spaceMono.variable} antialiased`}
       >
         {children}
+        <Analytics />
       </body>
     </html>
   );

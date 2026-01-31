@@ -64,11 +64,12 @@ export const FlowDiagram: React.FC<FlowDiagramProps> = ({ config, isDark }) => {
     setHyperparameters(params);
   }, []);
 
-  // Reset output when inputs change (after a run has completed)
   useEffect(() => {
+    if (error) {
+      setError('');
+    }
     if (output && !isLoading) {
       setOutput('');
-      setError('');
     }
   }, [userPrompt, systemPrompt, selectedModel, hyperparameters]);
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Handle, Position } from 'reactflow';
 import { Hyperparameters } from '@/types';
+import { Tooltip } from './Tooltip';
 
 interface HyperparametersNodeProps {
     data: {
@@ -39,7 +40,10 @@ export const HyperparametersNode: React.FC<HyperparametersNodeProps> = ({ data }
 
                     {/* top_p */}
                     <div>
-                        <label className="block mb-1 font-medium">top_p</label>
+                        <label className="block mb-1 font-medium">
+                            top_p
+                            <Tooltip content="High (0.9-1): Diverse word choices. Low (0.1-0.5): Predictable, safe words." />
+                        </label>
                         <input
                             type="number"
                             step="0.1"
@@ -53,7 +57,10 @@ export const HyperparametersNode: React.FC<HyperparametersNodeProps> = ({ data }
 
                     {/* temperature */}
                     <div>
-                        <label className="block mb-1 font-medium">temperature: {temperature.toFixed(2)}</label>
+                        <label className="block mb-1 font-medium">
+                            temperature: {temperature.toFixed(2)}
+                            <Tooltip content="High (1.5-2): Creative, varied responses. Low (0-0.5): Focused, consistent responses." />
+                        </label>
                         <input
                             type="range"
                             min="0"
@@ -67,7 +74,10 @@ export const HyperparametersNode: React.FC<HyperparametersNodeProps> = ({ data }
 
                     {/* max_tokens */}
                     <div>
-                        <label className="block mb-1 font-medium">max_tokens</label>
+                        <label className="block mb-1 font-medium">
+                            max_tokens
+                            <Tooltip content="High (400-600): Longer responses. Low (50-150): Brief responses." />
+                        </label>
                         <input
                             type="number"
                             min="1"
@@ -85,6 +95,7 @@ export const HyperparametersNode: React.FC<HyperparametersNodeProps> = ({ data }
                     <div>
                         <label className="block mb-1 font-medium">
                             stop {stop && `(${stop.split(',').filter(s => s.trim()).length}/4)`}
+                            <Tooltip content="Defines where the model should stop generating text (e.g., '\n' for line breaks)." />
                         </label>
                         <input
                             type="text"

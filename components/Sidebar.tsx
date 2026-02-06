@@ -50,7 +50,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
       {/* Desktop Sidebar */}
       <aside
-        className={`fixed left-4 sm:left-8 md:left-12 lg:left-32 top-1/2 -translate-y-1/2 z-40 transition-all duration-500 max-w-[calc(25%-2rem)] hidden lg:block ${showSidebar ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-full pointer-events-none'
+        className={`fixed left-4 sm:left-8 md:left-12 lg:left-32 top-1/2 -translate-y-1/2 z-40 transition-all duration-500 max-w-[calc(22%-2rem)] hidden lg:block ${showSidebar ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-full pointer-events-none'
           }`}
       >
         <nav>

@@ -107,7 +107,7 @@ export default function Home() {
         </section>
 
         {/* Blog Content Container - Left Offset */}
-        <div className="px-4 sm:px-8 md:px-12 lg:ml-[20%] lg:pr-16 xl:ml-[25%] xl:pr-32">
+        <div className="px-4 sm:px-8 md:px-12 lg:ml-[28%] lg:pr-16 xl:ml-[32%] xl:pr-32">
           {/* Introduction Text */}
           <div className="space-y-4 leading-relaxed mb-20">
             <p>

@@ -11,7 +11,7 @@ import Image from 'next/image';
 const sections: Section[] = [
   { id: 'intro', title: 'Introduction' },
   { id: 'llm', title: 'Large Language Models' },
-  { id: 'hyperparameters', title: 'Hyperparameters' },
+  { id: 'inference-parameters', title: 'Inference Parameters' },
   { id: 'prompts', title: 'System and User Prompts' },
   { id: 'memory', title: 'Memory' },
   { id: 'accuracy', title: 'Accuracy, Bias, and Trust' },
@@ -69,7 +69,7 @@ export default function Home() {
 
       <main className="py-8 sm:py-16">
         {/* Hero Section - Full Width */}
-        <section id="intro" className="mb-10 sm:mb-20 relative px-4 sm:px-8 md:px-16 lg:px-32 pt-6 sm:pt-24 md:pt-32 lg:pt-40 pb-4 sm:pb-0 min-h-[60vh] flex items-center">
+        <section id="intro" className="mb-10 sm:mb-20 relative px-6 sm:px-12 md:px-20 lg:px-40 pt-6 sm:pt-24 md:pt-32 lg:pt-40 pb-4 sm:pb-0 min-h-[60vh] flex items-center">
           {/* Mesh Background - Centered */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
             <Image
@@ -83,7 +83,7 @@ export default function Home() {
           </div>
 
           {/* Hero Content - Left aligned, vertically centered */}
-          <div className="relative z-10">
+          <div className="relative z-10 max-w-full">
             {/* Title */}
             <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-8 text-left">
               Designing AI Systems
@@ -107,7 +107,7 @@ export default function Home() {
         </section>
 
         {/* Blog Content Container - Left Offset */}
-        <div className="px-4 sm:px-8 md:px-12 lg:ml-[28%] lg:pr-16 xl:ml-[32%] xl:pr-32">
+        <div className="px-6 sm:px-12 md:px-20 lg:ml-[28%] lg:pr-16 xl:ml-[32%] xl:pr-32">
           {/* Introduction Text */}
           <div className="space-y-4 leading-relaxed mb-20">
             <p>
@@ -159,16 +159,16 @@ export default function Home() {
           </section>
 
           {/* Hyperparameters */}
-          <section id="hyperparameters" className="mb-20">
-            <h2 className="text-2xl sm:text-3xl font-bold mb-6">Hyperparameters</h2>
+          <section id="inference-parameters" className="mb-20">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-6">Inference Parameters</h2>
             <div className="space-y-4   leading-relaxed mb-8">
               <p>
-                Now that you've chosen your model, the next step is tuning its responses. Most LLMs expose a set of controls that let you change how they respond to the same input, without re-training the model itself. These are called hyperparameters.
+                Now that you've chosen your model, the next step is tuning its responses. Most LLMs expose a set of controls that let you change how they respond to the same input, without re-training the model itself. These are called inference parameters.
               </p>
               <p>
-                Remember how LLMs work internally? They produce outputs by predicting the next most suitable word. This means the output is produced word-by-word where the model uses statistics to choose each consecutive word. Hyperparameters help adjust how these words are chosen. Each LLM has it's own set of hyperparameters.
+                Remember how LLMs work internally? They produce outputs by predicting the next most suitable word. This means the output is produced word-by-word where the model uses statistics to choose each consecutive word. Inference parameters help adjust how these words are chosen. Each LLM has it's own set of inference parameters.
               </p>
-              <p>Some common hyperparameters to fine-tune models are:</p>
+              <p>Some common inference parameters to fine-tune models are:</p>
               <ul className="list-none space-y-2 ml-4">
                 <li><code className="code-inline">temperature</code>: controls how varied the responses are to the same input</li>
                 <li><code className="code-inline">top_p</code> and <code className="code-inline">top_k</code>: different ways of selecting which words (tokens) the model can choose from. <code className="code-inline">top_k</code> limits choices to most likely tokens, which makes the responses focused, and <code className="code-inline">top_p</code> selects tokens based on cumulative probabilities, which allows more varied responses.</li>
@@ -179,7 +179,7 @@ export default function Home() {
             </div>
 
             <div className="mb-6">
-              <p className="  mb-4 font-semibold">Let's test out hyperparameters then:</p>
+              <p className="  mb-4 font-semibold">Let's test out inference parameters then:</p>
               <FlowDiagram config={diagram2} isDark={isDark} />
             </div>
           </section>
@@ -189,7 +189,7 @@ export default function Home() {
             <h2 className="text-2xl sm:text-3xl font-bold mb-6">System and User Prompts</h2>
             <div className="space-y-4   leading-relaxed mb-8">
               <p>
-                If hyperparameters let you statistically tune how an LLM generates text, <strong>system prompts</strong> can help you change how the model behaves while responding.
+                If inference parameters let you statistically tune how an LLM generates text, <strong>system prompts</strong> can help you change how the model behaves while responding.
               </p>
               <p>
                 There are two types of prompts: System prompts and User prompts. User prompts are what you input, while the system prompt is where you define the model's intent, behavior, and personality. You can set the system prompt in your model to "To always respond like a pirate," and it will answer every query in that style.
@@ -231,7 +231,7 @@ export default function Home() {
             <h2 className="text-2xl sm:text-3xl font-bold mb-6">Accuracy, Bias, and Trust</h2>
             <div className="space-y-4   leading-relaxed">
               <p>
-                Now that we've demystified what people commonly lump together as "AI"- LLMs, hyperparameters, system and user prompts, and conversation memory, we can move onto understanding the why and how we build on top of these pieces.
+                Now that we've demystified what people commonly lump together as "AI"- LLMs, inference parameters, system and user prompts, and conversation memory, we can move onto understanding the why and how we build on top of these pieces.
               </p>
               <p>
                 When we work with LLMs, one of the major concerns is understanding whether our final output(s) are factual, grounded, and ethically right. Whether the product is large-scale or small-scale, ensuring that the responses are exactly how we intend them to be is essential.

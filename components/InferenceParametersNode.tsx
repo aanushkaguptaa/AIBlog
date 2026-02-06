@@ -1,24 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { Handle, Position } from 'reactflow';
-import { Hyperparameters } from '@/types';
+import { InferenceParameters } from '@/types';
 import { Tooltip } from './Tooltip';
 
-interface HyperparametersNodeProps {
+interface InferenceParametersNodeProps {
     data: {
         label: string;
         className: string;
         style?: React.CSSProperties;
-        onValueChange?: (params: Hyperparameters) => void;
+        onValueChange?: (params: InferenceParameters) => void;
     };
 }
 
-export const HyperparametersNode: React.FC<HyperparametersNodeProps> = ({ data }) => {
+export const InferenceParametersNode: React.FC<InferenceParametersNodeProps> = ({ data }) => {
     const [topP, setTopP] = useState(0.9);
     const [temperature, setTemperature] = useState(1.0);
     const [maxTokens, setMaxTokens] = useState(600);
     const [stop, setStop] = useState('');
     useEffect(() => {
-        const params: Hyperparameters = {
+        const params: InferenceParameters = {
             top_p: topP,
             temperature,
             max_tokens: maxTokens,

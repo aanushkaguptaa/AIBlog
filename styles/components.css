@@ -59,7 +59,7 @@
 
 .react-flow__node-custom,
 .react-flow__node-textInput,
-.react-flow__node-hyperparameters,
+.react-flow__node-inference-parameters,
 .react-flow__node-output {
     background: transparent !important;
     border: none !important;
@@ -77,7 +77,7 @@
 .react-flow__node.selected .react-flow__node-default,
 .react-flow__node.selected .react-flow__node-custom,
 .react-flow__node.selected .react-flow__node-textInput,
-.react-flow__node.selected .react-flow__node-hyperparameters,
+.react-flow__node.selected .react-flow__node-inference-parameters,
 .react-flow__node.selected .react-flow__node-output {
     outline: none !important;
     box-shadow: none !important;

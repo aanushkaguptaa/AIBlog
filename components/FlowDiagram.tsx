@@ -3,16 +3,16 @@ import ReactFlow, { Background, BackgroundVariant, Node, Edge, Controls, MarkerT
 import 'reactflow/dist/style.css';
 import { CustomNode } from './CustomNode';
 import { TextInputNode } from './TextInputNode';
-import { HyperparametersNode } from './HyperparametersNode';
+import { InferenceParametersNode } from './InferenceParametersNode';
 import { OutputNode } from './OutputNode';
 import { SinusoidalEdge } from './SinusoidalEdge';
-import { DiagramConfig, ModelType, Hyperparameters } from '@/types';
+import { DiagramConfig, ModelType, InferenceParameters } from '@/types';
 import { streamChat } from '@/lib/apiClient';
 
 const nodeTypes = {
   custom: CustomNode,
   textInput: TextInputNode,
-  hyperparameters: HyperparametersNode,
+  inferenceParameters: InferenceParametersNode,
   output: OutputNode,
 };
 
@@ -45,7 +45,7 @@ export const FlowDiagram: React.FC<FlowDiagramProps> = ({ config, isDark }) => {
   const [selectedModel, setSelectedModel] = useState<ModelType>('llama-3.1-8b-instant');
   const [userPrompt, setUserPrompt] = useState('');
   const [systemPrompt, setSystemPrompt] = useState('');
-  const [hyperparameters, setHyperparameters] = useState<Hyperparameters>({});
+  const [inferenceParameters, setInferenceParameters] = useState<InferenceParameters>({});
   const [output, setOutput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
@@ -60,8 +60,8 @@ export const FlowDiagram: React.FC<FlowDiagramProps> = ({ config, isDark }) => {
     setSystemPrompt(value);
   }, []);
 
-  const handleHyperparametersChange = useCallback((params: Hyperparameters) => {
-    setHyperparameters(params);
+  const handleInferenceParametersChange = useCallback((params: InferenceParameters) => {
+    setInferenceParameters(params);
   }, []);
 
   useEffect(() => {
@@ -71,7 +71,7 @@ export const FlowDiagram: React.FC<FlowDiagramProps> = ({ config, isDark }) => {
     if (output && !isLoading) {
       setOutput('');
     }
-  }, [userPrompt, systemPrompt, selectedModel, hyperparameters]);
+  }, [userPrompt, systemPrompt, selectedModel, inferenceParameters]);
 
   const handleRun = useCallback(async () => {
     if (!userPrompt.trim()) {
@@ -88,7 +88,7 @@ export const FlowDiagram: React.FC<FlowDiagramProps> = ({ config, isDark }) => {
         model: selectedModel,
         user_prompt: userPrompt,
         ...(systemPrompt ? { system_prompt: systemPrompt } : {}),
-        hyperparameters,
+        inferenceParameters,
         save_conversation: config.enableConversationHistory || false,
         conversation_id: conversationId,
       };
@@ -130,7 +130,7 @@ export const FlowDiagram: React.FC<FlowDiagramProps> = ({ config, isDark }) => {
     } finally {
       setIsLoading(false);
     }
-  }, [userPrompt, systemPrompt, selectedModel, hyperparameters, conversationId, config.enableConversationHistory]);
+  }, [userPrompt, systemPrompt, selectedModel, inferenceParameters, conversationId, config.enableConversationHistory]);
 
   // Build nodes with callbacks
   const buildNodes = useCallback((): Node[] => {
@@ -185,15 +185,15 @@ export const FlowDiagram: React.FC<FlowDiagramProps> = ({ config, isDark }) => {
         };
       }
 
-      if (node.label === 'Hyperparameters') {
+      if (node.label === 'Inference Parameters') {
         return {
           id: node.id,
-          type: 'hyperparameters',
+          type: 'inferenceParameters',
           position: node.position,
           draggable: true,
           data: {
             ...baseData,
-            onValueChange: handleHyperparametersChange,
+            onValueChange: handleInferenceParametersChange,
           },
         };
       }
@@ -223,7 +223,7 @@ export const FlowDiagram: React.FC<FlowDiagramProps> = ({ config, isDark }) => {
         data: baseData,
       };
     });
-  }, [config.nodes, isDark, selectedModel, handleUserPromptChange, handleSystemPromptChange, handleHyperparametersChange]);
+  }, [config.nodes, isDark, selectedModel, handleUserPromptChange, handleSystemPromptChange, handleInferenceParametersChange]);
 
   const buildEdges = useCallback((): Edge[] => {
     const edgeColor = isDark ? '#ffffff' : '#6b7280';

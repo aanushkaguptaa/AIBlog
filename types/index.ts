@@ -9,7 +9,7 @@ export type ModelType =
     | "qwen/qwen3-32b"
     | "groq/compound";
 
-export interface Hyperparameters {
+export interface InferenceParameters {
     temperature?: number;
     top_p?: number;
     max_tokens?: number;
@@ -20,7 +20,7 @@ export interface StreamChatRequest {
     model: ModelType;
     user_prompt: string;
     system_prompt?: string;
-    hyperparameters?: Hyperparameters;
+    inferenceParameters?: InferenceParameters;
     save_conversation?: boolean;
     conversation_id?: string | null;
 }
@@ -38,7 +38,7 @@ export interface FlowNode {
     label: string;
     position: { x: number; y: number };
     color: string;
-    nodeType?: 'default' | 'textInput' | 'hyperparameters' | 'output' | 'llm';
+    nodeType?: 'default' | 'textInput' | 'inference-parameters' | 'output' | 'llm';
     placeholder?: string;
 }
 
